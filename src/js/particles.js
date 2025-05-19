@@ -4,39 +4,39 @@ import { loadFull } from "tsparticles";
 export async function initParticles() {
   await loadFull(tsParticles);
   
-  await tsParticles.load("particles", {
+  await tsParticles.load("particles-js", {
     particles: {
       number: {
-        value: 80,
+        value: 50,
         density: {
           enable: true,
           value_area: 800
         }
       },
       color: {
-        value: "#ffffff"
+        value: "#ff3366"
       },
       shape: {
         type: "circle"
       },
       opacity: {
-        value: 0.5,
-        random: false
+        value: 0.3,
+        random: true
       },
       size: {
-        value: 3,
+        value: 2,
         random: true
       },
       line_linked: {
         enable: true,
         distance: 150,
-        color: "#ffffff",
-        opacity: 0.4,
+        color: "#ff3366",
+        opacity: 0.2,
         width: 1
       },
       move: {
         enable: true,
-        speed: 6,
+        speed: 2,
         direction: "none",
         random: false,
         straight: false,
@@ -49,9 +49,17 @@ export async function initParticles() {
       events: {
         onhover: {
           enable: true,
-          mode: "repulse"
+          mode: "grab"
         },
         resize: true
+      },
+      modes: {
+        grab: {
+          distance: 140,
+          line_linked: {
+            opacity: 0.5
+          }
+        }
       }
     },
     retina_detect: true

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Z-FLARE CONNECTION PROCEEDING</title>
+  <title>ZANEFLIX SECURE ACCESS</title>
   <link rel="stylesheet" href="/src/styles/main.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,30 +11,34 @@
 </head>
 <body>
   <div id="particles-js"></div>
+  <canvas id="matrix-rain"></canvas>
   
   <div class="container">
     <header>
       <div class="logo">
-        <div class="logo-text">Z-FLARE</div>
-        <div class="logo-badge">SECURITY</div>
+        <div class="logo-text">ZANEFLIX</div>
+        <div class="logo-badge">SECURE ACCESS</div>
       </div>
     </header>
 
     <main>
       <div class="verification-box">
-        <h1>CONNECTION PROCEEDING</h1>
-        <div class="cube-container">
-          <div id="3d-cube"></div>
+        <div class="hologram-effect"></div>
+        <h1>INITIALIZING SECURE CONNECTION</h1>
+        
+        <div class="scene-container">
+          <div id="3d-scene"></div>
         </div>
         
         <div class="status-container">
-          <div class="status-text">Initializing security protocol...</div>
+          <div class="status-text">Establishing quantum-encrypted channel...</div>
           <div id="typed-output"></div>
         </div>
         
         <div class="progress-container">
           <div class="progress-bar">
             <div class="progress-fill"></div>
+            <div class="progress-glow"></div>
           </div>
           <div class="progress-percentage">0%</div>
         </div>
@@ -45,8 +49,8 @@
               <div class="step-icon"></div>
             </div>
             <div class="step-content">
-              <div class="step-title">Initializing Protocol</div>
-              <div class="step-description">Establishing secure connection</div>
+              <div class="step-title">Quantum Handshake</div>
+              <div class="step-description">Establishing secure quantum channel</div>
             </div>
           </div>
           
@@ -55,8 +59,8 @@
               <div class="step-icon"></div>
             </div>
             <div class="step-content">
-              <div class="step-title">Verifying Identity</div>
-              <div class="step-description">Analyzing digital fingerprint</div>
+              <div class="step-title">Neural Verification</div>
+              <div class="step-description">Processing biometric signature</div>
             </div>
           </div>
           
@@ -65,8 +69,8 @@
               <div class="step-icon"></div>
             </div>
             <div class="step-content">
-              <div class="step-title">Securing Channel</div>
-              <div class="step-description">Encrypting data pathway</div>
+              <div class="step-title">Encryption Matrix</div>
+              <div class="step-description">Generating secure access keys</div>
             </div>
           </div>
           
@@ -75,8 +79,8 @@
               <div class="step-icon"></div>
             </div>
             <div class="step-content">
-              <div class="step-title">Granting Access</div>
-              <div class="step-description">Forwarding to destination</div>
+              <div class="step-title">Access Granted</div>
+              <div class="step-description">Redirecting to secure stream</div>
             </div>
           </div>
         </div>
@@ -84,13 +88,10 @@
     </main>
     
     <footer>
-      <div class="footer-text">Z-FLARE SECURITY PROTOCOL v2.5.7</div>
-      <div class="footer-id">ID: <span id="session-id"></span></div>
+      <div class="footer-text">ZANEFLIX QUANTUM PROTOCOL v3.0.1</div>
+      <div class="footer-id">SESSION: <span id="session-id"></span></div>
     </footer>
   </div>
-
-  <!-- Digital rain canvas for background effect -->
-  <canvas id="digital-rain"></canvas>
 
   <script type="module" src="/src/js/main.js"></script>
 </body>

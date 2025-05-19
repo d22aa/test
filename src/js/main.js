@@ -1,29 +1,32 @@
 import { initParticles } from './particles.js';
-import { initDigitalRain } from './digitalRain.js';
-import { initCube } from './cube.js';
+import { initMatrixRain } from './matrixRain.js';
+import { init3DScene } from './scene3D.js';
+import gsap from 'gsap';
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // Generate random session ID immediately
-  const sessionId = Math.random().toString(36).substring(2, 15);
+  // Generate quantum-inspired session ID
+  const sessionId = Array.from({ length: 12 }, () => 
+    Math.floor(Math.random() * 16).toString(16)
+  ).join('').toUpperCase();
   document.getElementById('session-id').textContent = sessionId;
   
-  // Start verification process immediately
-  startVerification();
-  
-  // Initialize visual effects in parallel
+  // Initialize all visual effects
   Promise.all([
     initParticles(),
-    Promise.resolve(initDigitalRain()),
-    Promise.resolve(initCube(document.getElementById('3d-cube')))
+    Promise.resolve(initMatrixRain()),
+    Promise.resolve(init3DScene(document.getElementById('3d-scene')))
   ]).catch(console.error);
+  
+  // Start verification sequence
+  startVerification();
 });
 
 function startVerification() {
   const steps = [
-    { title: 'Initializing Protocol', message: 'Establishing secure connection', duration: 1000 },
-    { title: 'Verifying Identity', message: 'Analyzing digital fingerprint', duration: 1500 },
-    { title: 'Securing Channel', message: 'Encrypting data pathway', duration: 1000 },
-    { title: 'Granting Access', message: 'Forwarding to destination', duration: 500 }
+    { title: 'Quantum Handshake', message: 'Establishing secure quantum channel', duration: 2000 },
+    { title: 'Neural Verification', message: 'Processing biometric signature', duration: 2500 },
+    { title: 'Encryption Matrix', message: 'Generating secure access keys', duration: 2000 },
+    { title: 'Access Granted', message: 'Redirecting to secure stream', duration: 1500 }
   ];
 
   let currentStep = 0;
@@ -31,11 +34,22 @@ function startVerification() {
   
   const statusText = document.querySelector('.status-text');
   const progressFill = document.querySelector('.progress-fill');
+  const progressGlow = document.querySelector('.progress-glow');
   const progressPercentage = document.querySelector('.progress-percentage');
   
   function updateProgress() {
-    progressFill.style.width = `${progress}%`;
+    const progressValue = `${progress}%`;
+    progressFill.style.width = progressValue;
+    progressGlow.style.width = progressValue;
     progressPercentage.textContent = `${Math.round(progress)}%`;
+    
+    // Animate glow effect
+    gsap.to(progressGlow, {
+      opacity: 0.8,
+      duration: 0.5,
+      yoyo: true,
+      repeat: 1
+    });
   }
   
   function updateStep(index) {
@@ -46,6 +60,14 @@ function startVerification() {
       } else if (i === index) {
         step.classList.add('active');
         step.classList.remove('completed');
+        
+        // Animate step activation
+        gsap.from(step, {
+          opacity: 0,
+          x: -20,
+          duration: 0.5,
+          ease: "power2.out"
+        });
       } else {
         step.classList.remove('active', 'completed');
       }
@@ -54,7 +76,16 @@ function startVerification() {
   
   function simulateProgress() {
     if (currentStep >= steps.length) {
-      window.location.href = 'https://zane-anime.infinityfreeapp.com';
+      // Add final animation before redirect
+      gsap.to('.verification-box', {
+        opacity: 0,
+        scale: 0.95,
+        duration: 1,
+        ease: "power2.in",
+        onComplete: () => {
+          window.location.href = 'https://zaneflix.com';
+        }
+      });
       return;
     }
     
@@ -66,21 +97,28 @@ function startVerification() {
     statusText.textContent = step.message;
     updateStep(currentStep);
     
-    const interval = 25; // Update more frequently
-    const updates = step.duration / interval;
-    const increment = (endProgress - progress) / updates;
-    
-    const progressInterval = setInterval(() => {
-      progress += increment;
-      if (progress >= endProgress) {
-        progress = endProgress;
-        clearInterval(progressInterval);
+    // Animate progress with GSAP
+    gsap.to({ value: progress }, {
+      value: endProgress,
+      duration: step.duration / 1000,
+      ease: "power1.inOut",
+      onUpdate: function() {
+        progress = this.targets()[0].value;
+        updateProgress();
+      },
+      onComplete: () => {
         currentStep++;
         simulateProgress();
       }
-      updateProgress();
-    }, interval);
+    });
   }
   
-  simulateProgress();
+  // Start the sequence with initial animation
+  gsap.from('.verification-box', {
+    opacity: 0,
+    y: 30,
+    duration: 1,
+    ease: "power2.out",
+    onComplete: simulateProgress
+  });
 }
